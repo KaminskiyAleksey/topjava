@@ -33,7 +33,7 @@
             <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.MealTo"/>
             <tr class="${meal.excess ? 'excess' : 'normal'}">
                 <td>
-                        ${DateTimeUtil.toString(meal.dateTime.toLocalTime())}>
+                        ${DateTimeUtil.toString(meal.dateTime)}
                 </td>
                 <td>${meal.description}</td>
                 <td>${meal.calories}</td>
