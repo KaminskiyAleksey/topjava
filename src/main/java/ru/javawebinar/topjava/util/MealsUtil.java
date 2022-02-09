@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -25,6 +26,18 @@ public class MealsUtil {
             new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500),
             new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410)
     );
+
+    public static void deleteElement(Integer id){
+        Iterator<Meal> mealIterator = meals.iterator();//создаем итератор
+        while(mealIterator.hasNext()) {//до тех пор, пока в списке есть элементы
+
+            Meal nextMeal = mealIterator.next();//получаем следующий элемент
+            if (nextMeal.getId() == id) {
+                mealIterator.remove();
+                return;
+            }
+        }
+    }
 
     public static List<MealTo> getTos(List<Meal> meals, int caloriesPerDay) {
         return filterByPredicate(meals, caloriesPerDay, meal -> true);
@@ -56,6 +69,6 @@ public class MealsUtil {
     }
 
     private static MealTo createTo(Meal meal, boolean excess) {
-        return new MealTo(meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+        return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
 }
