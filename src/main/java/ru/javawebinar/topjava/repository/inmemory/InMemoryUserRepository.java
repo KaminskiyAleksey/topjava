@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class InMemoryUserRepository implements UserRepository {
 
     public static final int USER_ID = 1;
-    public static final int ADMIN_ID = 2;
 
     private final Map<Integer, User> usersMap = new ConcurrentHashMap<>();
     private final AtomicInteger counter = new AtomicInteger(0);
@@ -43,7 +42,7 @@ public class InMemoryUserRepository implements UserRepository {
     @Override
     public List<User> getAll() {
         return usersMap.values().stream()
-                .sorted(Comparator.comparing(User::getName))
+                .sorted(Comparator.comparing(User::getName).thenComparing(User::getEmail))
                 .collect(Collectors.toList());
     }
 
