@@ -19,7 +19,6 @@ import ru.javawebinar.topjava.TimingRules;
 import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.util.ValidationUtil.getRootCause;
 
-
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-db.xml"
@@ -33,7 +32,7 @@ public abstract class AbstractServiceTest {
     public static ExternalResource summary = TimingRules.SUMMARY;
 
     @Autowired
-    public Environment env;
+    private Environment env;
 
     @Rule
     public Stopwatch stopwatch = TimingRules.STOPWATCH;
